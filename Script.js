@@ -41,13 +41,18 @@ Array.prototype.toSorted = function() {
 };
 const sortedProvinces = Object.values(valuesObj).toSorted();
 console.log(sortedProvinces.join(',\n'));
-
 console.log('\nQ6\n');
+// filter to remove all provinces that have the word Cape in them and return the amount of provinces left
+const filteredValues = Object.keys(valuesObj).filter(name => !valuesObj[name].includes('Cape'));
+const remainingCount = filteredValues.length;
+
+console.log(remainingCount);
+console.log('\nQ7\n');
 // determine whether a name contains an S character
 const containsS = Object.keys(valuesObj).map(name => [...name].some(char => char.toLowerCase() === 's'));
-console.log(containsS);
+console.log(containsS);// need to use filter
 
-console.log('\nQ7\n');
+console.log('\nQ8\n');
 //turn into an object that indicates the province of an individual.
 const provinces = ['Western Cape', 'Gauteng', 'Northern Cape', 'Eastern Cape', 'KwaZulu-Natal', 'Free State'];
 const names = ['Ashwin', 'Sibongile', 'Jan-Hendrik', 'Sifso', 'Shailen', 'Frikkie'];
@@ -71,15 +76,15 @@ const products = [
     { product: 'tea', price: '' },
   ]
 
-console.log('\nQ8\n');
+console.log('\nQ9\n');
 //Use forEach to console.log each product name to the console.
 console.log(products.forEach(item => console.log(item.product)));
 
-console.log('\nQ9\n');
+console.log('\nQ10\n');
 //filter out products that have a name longer than 5 characters
 console.log(products.filter(item => item.product.length <= 5).map(item => item.product));
 
-console.log('\nQ10\n');  
+console.log('\nQ11\n');  
 //Convert all prices that are strings to numbers, and remove all products from the array that do not have prices. After this has been done then use reduce to calculate the combined price of all remaining products.
 console.log(
     products.reduce((acc, { price }) => {
@@ -87,7 +92,7 @@ console.log(
         return !isNaN(parsedPrice) ? acc + parsedPrice : acc;
     }, 0)
     )
-console.log('\nQ11\n');
+console.log('\nQ12\n');
 //concatenate all product names to create the following string
 console.log(products.reduce((acc, curr, index, array) => {
     if (index === array.length - 1) {
@@ -101,7 +106,7 @@ console.log(products.reduce((acc, curr, index, array) => {
 //alternatively we could have used  regular expression:
 //console.log(products.map(product => product.product).join(', ').replace(/,([^,]*)$/, ' and$1'));
 
-console.log('\nQ12\n');
+console.log('\nQ13\n');
 //Use reduce to calculate both the highest and lowest-priced items
 console.log(`Highest: ${products.reduce((acc, curr) => {
     const price = parseInt(curr.price);
@@ -121,7 +126,7 @@ console.log(`Highest: ${products.reduce((acc, curr) => {
     return acc;
 }, { lowest: null }).lowest.product}`);
 
-console.log('\nQ13\n');
+console.log('\nQ14\n');
 //recreate the object with the exact same values, however product should be changed to name and price should be changed to cost
 console.log(products.reduce((acc, curr) => {
     const newEntry = Object.entries(curr).reduce((newObj, [key, value]) => {
